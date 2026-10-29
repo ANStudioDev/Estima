@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acquista Estima · Contatta il produttore</title>
+<meta name="description" content="Per acquistare la licenza di Estima contatta il produttore: ti ricontattiamo con tutte le informazioni.">
+<link rel="icon" href="immagini/icona-32.png">
+<link rel="stylesheet" href="stile.css">
+<style>
+  .contatto { max-width: 760px; margin: 0 auto; padding: 56px 20px 72px; }
+  .contatto h1 { font-size: clamp(30px, 4.4vw, 44px); line-height: 1.1; margin: 0 0 14px; letter-spacing: -.02em; }
+  .contatto .lead { color: var(--soft); font-size: 18px; margin: 0 0 28px; }
+  .passi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 34px; padding: 0; list-style: none; counter-reset: p; }
+  .passi li { counter-increment: p; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 52px; position: relative; color: var(--soft); font-size: 15px; }
+  .passi li::before { content: counter(p); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; border-radius: 50%; background: var(--grad); color: #fff; font-weight: 700; display: grid; place-items: center; font-size: 14px; }
+  .passi b { color: var(--text); display: block; }
+  form.modulo { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+  .modulo label { display: block; font-size: 14px; color: var(--soft); }
+  .modulo label > input, .modulo label > textarea { display: block; margin-top: 6px; }
+  .modulo label.tutto { grid-column: 1 / -1; }
+  .modulo input, .modulo textarea, .modulo select { font: inherit; font-size: 16px; color: var(--text); background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; width: 100%; }
+  .modulo textarea { min-height: 110px; resize: vertical; }
+  .modulo input:focus, .modulo textarea:focus, .modulo select:focus { outline: 2px solid var(--blu); outline-offset: 1px; }
+  .modulo .err input, .modulo .err textarea { border-color: #ff6b6b; }
+  .modulo .facolt { color: var(--mute); font-weight: 400; }
+  .modulo details { grid-column: 1 / -1; color: var(--soft); }
+  .modulo details summary { cursor: pointer; color: var(--text); }
+  .modulo details .griglia { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-top: 14px; }
+  .modulo .fondo { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .modulo .fondo p { margin: 0; color: var(--mute); font-size: 13px; flex: 1 1 260px; }
+  .modulo button { cursor: pointer; font: inherit; color: #fff; }
+  .modulo button[disabled] { opacity: .6; cursor: default; }
+  .nascosto { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  #esito { grid-column: 1 / -1; margin: 0; border-radius: 10px; padding: 12px 14px; display: none; }
+  #esito.ko { display: block; background: rgba(255, 107, 107, .12); color: #ffb3b3; }
+  .grazie { display: none; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; text-align: center; }
+  .grazie h2 { margin: 0 0 8px; }
+  .grazie p { color: var(--soft); margin: 0; }
+  @media (max-width: 680px) {
+    .passi, form.modulo, .modulo details .griglia { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="immagini/icona-256.png" alt="">Estima</a>
+    <a class="btn pri" href="index.html#scarica" style="padding:9px 16px;font-size:15px;margin-left:auto">Prova Estima</a>
+  </div>
+</header>
+
+<main class="contatto">
+  <h1>Contatta il produttore</h1>
+  <p class="lead">Per acquistare la licenza di Estima (490 € + IVA, una volta sola) o per qualsiasi informazione sull'acquisto, lasciaci i tuoi recapiti: ti ricontattiamo noi con tutti i dettagli.</p>
+
+  <ol class="passi">
+    <li><b>Ci scrivi</b>Con il modulo qui sotto: bastano nome, azienda ed email.</li>
+    <li><b>Ti ricontattiamo</b>Con prezzo, fattura e le indicazioni per il pagamento con bonifico.</li>
+    <li><b>Licenza attiva</b>Ricevuto il pagamento, la licenza compare sul tuo account Faro.</li>
+  </ol>
+
+  <form class="modulo" id="modulo" novalidate>
+    <label>Nome e cognome
+      <input name="nome" autocomplete="name" required maxlength="80">
+    </label>
+    <label>Azienda (ragione sociale)
+      <input name="ragione" autocomplete="organization" required maxlength="120">
+    </label>
+    <label>Email
+      <input name="email" type="email" autocomplete="email" required maxlength="120">
+    </label>
+    <label>Telefono <span class="facolt">(facoltativo)</span>
+      <input name="telefono" type="tel" autocomplete="tel" maxlength="30">
+    </label>
+    <label class="tutto">Messaggio <span class="facolt">(facoltativo: quante licenze, domande, orari in cui chiamarti…)</span>
+      <textarea name="note" maxlength="1000"></textarea>
+    </label>
+
+    <details>
+      <summary>Dati per la fattura <span class="facolt">(facoltativi, si possono dare anche dopo)</span></summary>
+      <div class="griglia">
+        <label>Partita IVA
+          <input name="piva" maxlength="20" autocomplete="off">
+        </label>
+        <label>Numero di licenze
+          <input name="quante" type="number" min="1" max="20" value="1">
+        </label>
+        <label class="tutto" style="grid-column:1/-1">Sede (indirizzo, CAP, città)
+          <input name="indirizzo" autocomplete="street-address" maxlength="200">
+        </label>
+        <label>Codice SDI
+          <input name="sdi" maxlength="7" autocomplete="off">
+        </label>
+        <label>oppure PEC
+          <input name="pec" type="email" maxlength="120" autocomplete="off">
+        </label>
+      </div>
+    </details>
+
+    <div class="nascosto" aria-hidden="true"><label>Sito <input name="sito" tabindex="-1" autocomplete="off"></label></div>
+    <p id="esito" role="alert"></p>
+
+    <div class="fondo">
+      <p>Usiamo questi dati solo per risponderti e, se acquisti, per la fattura. Dettagli nell'<a href="privacy.html">informativa privacy</a>.</p>
+      <button class="btn pri" type="submit" id="invia">Invia la richiesta</button>
+    </div>
+  </form>
+
+  <div class="grazie" id="grazie" role="status">
+    <h2>Richiesta inviata, grazie!</h2>
+    <p>Ti ricontattiamo a breve all'indirizzo <b id="tuaemail"></b> con tutte le informazioni per l'acquisto. Intanto puoi usare Estima con la prova gratuita di 30 giorni: la licenza si aggiungerà allo stesso account.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ANStudio</span>
+    <div class="links">
+      <a href="index.html">Estima</a>
+      <a href="licenza.html">Licenza</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var SERVER = "https://faro.alessandronoemi99.workers.dev/v1/acquisto";
+  var NOMI = { nome: "nome e cognome", ragione: "azienda", email: "email", piva: "partita IVA", sdi: "codice SDI (6 o 7 caratteri)", pec: "PEC" };
+  var f = document.getElementById("modulo"), esito = document.getElementById("esito"), btn = document.getElementById("invia");
+
+  function segna(campi) {
+    f.querySelectorAll("label").forEach(function (l) { l.classList.remove("err"); });
+    campi.forEach(function (c) { var i = f.elements[c]; if (i) i.closest("label").classList.add("err"); });
+    if (campi.some(function (c) { return ["piva", "sdi", "pec"].indexOf(c) >= 0; })) f.querySelector("details").open = true;
+  }
+  function errore(t) { esito.textContent = t; esito.className = "ko"; }
+
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var d = {}; new FormData(f).forEach(function (v, k) { d[k] = String(v).trim(); });
+    d.app = "estima";
+    d.piva = d.piva.replace(/\s/g, "").toUpperCase();
+    var manca = ["nome", "ragione", "email"].filter(function (k) { return !d[k]; });
+    if (d.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email) && manca.indexOf("email") < 0) manca.push("email");
+    if (manca.length) { segna(manca); errore("Controlla: " + manca.map(function (k) { return NOMI[k]; }).join(", ") + "."); return; }
+    segna([]); esito.className = ""; btn.disabled = true; btn.textContent = "Invio in corso…";
+    fetch(SERVER, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); })
+      .then(function (x) {
+        if (x.s === 200 && x.j.ok) {
+          document.getElementById("tuaemail").textContent = d.email;
+          f.style.display = "none"; document.querySelector(".passi").style.display = "none";
+          document.getElementById("grazie").style.display = "block";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        if (x.j.campi) { var c = x.j.campi.filter(function (k) { return NOMI[k]; }); segna(c); errore("Controlla: " + c.map(function (k) { return NOMI[k]; }).join(", ") + "."); }
+        else if (x.s === 429) errore("Troppe richieste in poco tempo: riprova tra qualche minuto.");
+        else errore("Non è stato possibile inviare la richiesta. Riprova tra poco.");
+      })
+      .catch(function () { errore("Non è stato possibile inviare la richiesta: controlla la connessione e riprova."); })
+      .then(function () { btn.disabled = false; btn.textContent = "Invia la richiesta"; });
+  });
+})();
+</script>
+</body>
+</html>
