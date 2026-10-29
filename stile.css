@@ -1,0 +1,170 @@
+/* Sito di Estima (GitHub Pages) - stessa impostazione del sito di Lumina, colori di Estima */
+:root {
+  --bg: #0e0e14;
+  --panel: #181824;
+  --panel2: #1e1e2c;
+  --line: rgba(255, 255, 255, .09);
+  --text: #f4f3fb;
+  --soft: #b8b4d0;
+  --mute: #8a87a3;
+  --blu: #2f7bff;
+  --turchese: #19d3c5;
+  --grad: linear-gradient(135deg, #2f7bff 0%, #2aa6e8 50%, #19d3c5 100%);
+  --radius: 16px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #8cc2ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/* intestazione */
+header.top {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(14, 14, 20, .82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+header.top .wrap { display: flex; align-items: center; gap: 24px; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 650; font-size: 19px; }
+.brand:hover { text-decoration: none; }
+.brand img { width: 30px; height: 30px; }
+nav.menu { margin-left: auto; display: flex; gap: 22px; font-size: 15px; }
+nav.menu a { color: var(--soft); }
+nav.menu a:hover { color: var(--text); text-decoration: none; }
+
+/* pulsanti */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px; border-radius: 12px;
+  font-weight: 600; font-size: 16px; color: #fff;
+  border: 1px solid var(--line); background: var(--panel2);
+}
+.btn:hover { text-decoration: none; filter: brightness(1.12); }
+.btn.pri { background: var(--grad); border: 0; box-shadow: 0 10px 30px rgba(47, 123, 255, .28); }
+.btn svg { width: 20px; height: 20px; }
+.btn small { font-weight: 400; opacity: .8; font-size: 13px; }
+
+/* apertura */
+.hero { padding: 76px 0 40px; position: relative; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; inset: -40% 20% auto -20%; height: 640px;
+  background: radial-gradient(closest-side, rgba(47, 123, 255, .28), transparent);
+  pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute; inset: -30% -20% auto 50%; height: 560px;
+  background: radial-gradient(closest-side, rgba(25, 211, 197, .16), transparent);
+  pointer-events: none;
+}
+.hero .wrap { position: relative; z-index: 1; text-align: center; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 60px); line-height: 1.07; margin: 0 auto 18px; letter-spacing: -.02em; max-width: 15em; }
+.hero h1 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p.lead { font-size: 19px; color: var(--soft); margin: 0 auto 30px; max-width: 40em; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
+.meta { margin-top: 14px; color: var(--mute); font-size: 14px; }
+.schermo {
+  margin: 48px auto 0; max-width: 1080px; border-radius: 18px; overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, .55), 0 0 0 1px rgba(47, 123, 255, .15);
+}
+.schermo img { display: block; width: 100%; }
+
+/* sezioni */
+section { padding: 64px 0; border-top: 1px solid var(--line); }
+section h2 { font-size: 30px; margin: 0 0 8px; letter-spacing: -.01em; }
+section p.sub { color: var(--soft); margin: 0 0 32px; max-width: 48em; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.card h3 { margin: 0 0 6px; font-size: 18px; }
+.card p { margin: 0; color: var(--soft); font-size: 15px; }
+.card .ic { width: 38px; height: 38px; border-radius: 10px; background: rgba(47, 123, 255, .16); display: grid; place-items: center; margin-bottom: 14px; }
+.card .ic svg { width: 20px; height: 20px; stroke: #8cc2ff; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+.two.inv > :first-child { order: 2; }
+.foto { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255, 255, 255, .1); box-shadow: 0 24px 60px rgba(0, 0, 0, .45); }
+.foto img { display: block; width: 100%; }
+.punti { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.punti li { padding-left: 28px; position: relative; color: var(--soft); }
+.punti li b { color: var(--text); }
+.punti li::before { content: ""; position: absolute; left: 4px; top: 9px; width: 10px; height: 10px; border-radius: 3px; background: var(--grad); }
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 54px 16px 16px; position: relative; color: var(--soft); font-size: 15px; }
+.steps li b { color: var(--text); display: block; margin-bottom: 4px; font-size: 16px; }
+.steps li::before {
+  content: counter(s); position: absolute; left: 16px; top: 16px;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--grad);
+  display: grid; place-items: center; font-weight: 700; color: #fff; font-size: 14px;
+}
+
+/* chi lo usa */
+.mestieri { display: flex; flex-wrap: wrap; gap: 10px; }
+.mestieri span { background: var(--panel); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; color: var(--soft); font-size: 15px; }
+
+/* prezzi */
+.prezzi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.piano { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+.prezzi.due { grid-template-columns: repeat(2, minmax(0, 420px)); }
+.piano.top { border-color: rgba(47, 123, 255, .6); box-shadow: 0 0 0 1px rgba(47, 123, 255, .35), 0 20px 50px rgba(47, 123, 255, .15); }
+.piano h3 { margin: 0; font-size: 20px; }
+.piano .prezzo { font-size: 36px; font-weight: 700; letter-spacing: -.02em; }
+.piano .prezzo small { font-size: 15px; font-weight: 400; color: var(--mute); }
+.piano ul { margin: 0; padding-left: 20px; color: var(--soft); font-size: 15px; flex: 1; }
+.piano .btn { justify-content: center; }
+
+/* bozza: segnaposto da completare prima della pubblicazione */
+.dafare { outline: 2px dashed #ffb020; outline-offset: 3px; border-radius: 6px; }
+.avviso-bozza {
+  background: #3a2a08; color: #ffe2a8; text-align: center; font-size: 14px; padding: 8px 16px;
+  border-bottom: 1px solid rgba(255, 176, 32, .4);
+}
+
+/* domande */
+details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin-bottom: 10px; }
+details summary { cursor: pointer; font-weight: 600; }
+details p { color: var(--soft); margin: 10px 0 2px; }
+
+/* novita' */
+.rel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; }
+.rel h3 { margin: 0; font-size: 18px; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.rel h3 small { color: var(--mute); font-weight: 400; font-size: 14px; }
+.rel .badge { font-size: 12px; padding: 2px 8px; border-radius: 99px; background: rgba(47, 123, 255, .2); color: #cfe3ff; }
+.rel ul { margin: 10px 0 0; padding-left: 20px; color: var(--soft); }
+.rel p { margin: 10px 0 0; color: var(--soft); }
+
+/* pagine di testo (privacy, licenza) */
+.doc { max-width: 780px; padding: 56px 20px 80px; }
+.doc h1 { font-size: 36px; margin: 0 0 6px; }
+.doc h2 { font-size: 22px; margin: 36px 0 8px; }
+.doc p, .doc li { color: var(--soft); }
+.note { background: rgba(255, 176, 32, .1); border: 1px solid rgba(255, 176, 32, .35); color: #ffe2a8; border-radius: 12px; padding: 12px 16px; }
+
+/* pie' di pagina */
+footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--mute); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
+footer .links { display: flex; gap: 20px; flex-wrap: wrap; margin-left: auto; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  .two { grid-template-columns: 1fr; }
+  .two.inv > :first-child { order: 0; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  nav.menu { display: none; }
+  header.top .btn { margin-left: auto; }
+}
+@media (max-width: 560px) {
+  .grid, .prezzi, .prezzi.due, .steps { grid-template-columns: 1fr; }
+  .hero { padding-top: 44px; }
+}
+
+.btn.presto { justify-content: center; background: transparent; border: 1px dashed rgba(255,255,255,.28); color: rgba(255,255,255,.75); cursor: default; filter: none; }
